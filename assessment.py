@@ -27,5 +27,3 @@ class Assessment:
         if self.is_completed is True:
             return False
         return date.today() > self.due_date
-
-class Course:
