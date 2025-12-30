@@ -19,8 +19,7 @@ class Assessment:
         if grade is not None:
             self.grade_earned = grade
 
-    def complete(self, earned_grade: float):
-        self.grade_earned = earned_grade
+    def complete(self):
         self.is_completed = True
 
     def is_overdue(self):
