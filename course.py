@@ -29,3 +29,19 @@ class Course:
                 break
         if not found:
             print(f"{name} was not found\n")
+    
+    # Calculates the grade earned for the course
+    # Returns 0 if no assessments are completed
+    def course_grade(self):
+        points_earned = 0
+        weight_completed = 0
+        for assessment in self.assessments:
+
+            if assessment.grade_earned is not None:
+                points_earned += assessment.grade_earned * (assessment.weight / 100)
+                weight_completed += assessment.weight
+
+        if weight_completed == 0:
+            return 0
+        
+        return points_earned / weight_completed
