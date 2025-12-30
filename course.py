@@ -9,18 +9,18 @@ class Course:
         self.name = name    # intilizes a course name
         self.assessments = []   # creates an empty list of assessments
 
-    # Changes the name of a course
+    """Changes the name of a course"""
     def update(self, name = None):
 
         if name is not None:
             self.name = name
 
-    # Creates and adds a new lab/test to an exisiting list of assessments
+    """Creates and adds a new lab/test to an exisiting list of assessments"""
     def add_assessment(self, name: str, kind: str, due_date: date, weight: float):
         new_assessment = Assessment(name, kind, due_date, weight)
         self.assessments.append(new_assessment)
 
-    # Searches and removes a lab/test from the course
+    """Searches and removes a lab/test from the course"""
     def remove_assessment(self, name: str) -> bool:
 
         found = False
@@ -32,8 +32,8 @@ class Course:
                 break
         return found
     
-    # Calculates the grade earned for the course
-    # Returns 0 if no assessments are completed
+    """Calculates the grade earned for the course
+    Returns 0 if no assessments are completed"""
     def course_grade(self) -> float:
 
         points_earned = 0
@@ -50,8 +50,8 @@ class Course:
         
         return points_earned / weight_completed
     
-    # Counts the amount of completed and uncompleted assessments
-    # and returns the completion of the course as a %
+    """Counts the amount of completed and uncompleted assessments
+    and returns the completion of the course as a %"""
     def completion(self) -> float:
 
         numb_completed = 0
