@@ -5,11 +5,13 @@ class Course:
 
 
     def __init__(self, name: str):
+
         self.name = name    # intilizes a course name
         self.assessments = []   # creates an empty list of assessments
 
     # Changes the name of a course
     def update(self, name = None):
+
         if name is not None:
             self.name = name
 
@@ -19,22 +21,24 @@ class Course:
         self.assessments.append(new_assessment)
 
     # Searches and removes a lab/test from the course
-    def remove_assessment(self, name: str):
+    def remove_assessment(self, name: str) -> bool:
+
         found = False
+
         for assessment in self.assessments:
             if assessment.name == name:
-                found = True
                 self.assessments.remove(assessment)
-                print(f"{name} was removed\n")
+                found = True
                 break
-        if not found:
-            print(f"{name} was not found\n")
+        return found
     
     # Calculates the grade earned for the course
     # Returns 0 if no assessments are completed
-    def course_grade(self):
+    def course_grade(self) -> float:
+
         points_earned = 0
         weight_completed = 0
+
         for assessment in self.assessments:
 
             if assessment.grade_earned is not None:
@@ -45,3 +49,19 @@ class Course:
             return 0
         
         return points_earned / weight_completed
+    
+    # Counts the amount of completed and uncompleted assessments
+    # and returns the completion of the course as a %
+    def completion(self) -> float:
+
+        numb_completed = 0
+        numb_uncompleted = 0
+        for assessment in self.assessments:
+
+            if assessment.is_completed:
+                numb_completed += 1
+            else:
+                numb_uncompleted += 1
+        if numb_completed + numb_uncompleted == 0:
+            return 0
+        return  100 * numb_completed / (numb_completed + numb_uncompleted)
