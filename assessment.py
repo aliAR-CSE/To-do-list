@@ -10,6 +10,7 @@ class Assessment:
         self.is_completed = False
 
     def update(self, name = None, due_date = None, weight = None, grade = None):
+        """Updates the Assessment based on params"""
         if name is not None:
             self.name = name
         if due_date is not None:
@@ -20,14 +21,19 @@ class Assessment:
             self.grade_earned = grade
 
     def complete(self):
+        "Marks the Assigment as completed"
         self.is_completed = True
 
     def is_overdue(self):
+        """Compares todays date and compares it to the due_date attribute 
+        and returns True or Flase, the dates are formated as YYYY-MM-DD"""
         if self.is_completed is True:
             return False
         return date.today() > self.due_date # compares today's date as YYYY-MM-DD to a set due date
     
-    def to_dict(self):
+    def to_dict(self) -> dict:
+        """Converts Assessment object to a dictionary 
+        and changes the due_date to a string"""
         new_dict = {"name" : self.name, 
                     "kind" : self.kind, 
                     "due_date" : str(self.due_date), 
