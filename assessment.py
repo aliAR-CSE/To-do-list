@@ -21,7 +21,7 @@ class Assessment:
             self.grade_earned = grade
 
     def complete(self):
-        "Marks the Assigment as completed"
+        """Marks the Assigment as completed"""
         self.is_completed = True
 
     def is_overdue(self):

@@ -3,7 +3,7 @@ from course import Course
 from assessment import Assessment
 FILE_NAME = "data.JSON"
 
-""""Converts a list of Course objects Into a list of 
+"""Converts a list of Course objects Into a list of 
 dictionaries, then saves it to a JSON file
 """
 def save_courses(FILE_NAME: str, courses: list[Course]):
@@ -13,7 +13,7 @@ def save_courses(FILE_NAME: str, courses: list[Course]):
     with open(FILE_NAME, "w", encoding = 'utf-8') as file:
         json.dump(data, file, ensure_ascii = False, indent = 4)
 
-""""Converts JSON into a list of Course object"""
+"""Converts JSON into a list of Course object"""
 def load_courses(FILE_NAME: str) -> list[Course]:
 
     Course_list = []
