@@ -1,6 +1,7 @@
 import json
 from course import Course
 from assessment import Assessment
+from datetime import date
 FILE_NAME = "data.JSON"
 
 """Converts a list of Course objects Into a list of 
@@ -26,7 +27,7 @@ def load_courses(FILE_NAME: str) -> list[Course]:
         new_course = Course(course["name"])
 
         for assessment in course["assessments"]:
-            new_assessment = Assessment(assessment["name"], assessment["kind"], assessment["due_date"], assessment["weight"])
+            new_assessment = Assessment(assessment["name"], assessment["kind"], date.fromisoformat(assessment["due_date"]), assessment["weight"])
             new_assessment.grade_earned = assessment["grade_earned"]
             new_assessment.is_completed = assessment["is_completed"]
             new_course.assessments.append(new_assessment)
