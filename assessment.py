@@ -26,3 +26,12 @@ class Assessment:
         if self.is_completed is True:
             return False
         return date.today() > self.due_date # compares today's date as YYYY-MM-DD to a set due date
+    
+    def to_dict(self):
+        new_dict = {"name" : self.name, 
+                    "kind" : self.kind, 
+                    "due_date" : str(self.due_date), 
+                    "weight" : self.weight, 
+                    "grade_earned" : self.grade_earned, 
+                    "is_completed" : self.is_completed}
+        return new_dict
