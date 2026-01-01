@@ -9,20 +9,19 @@ class Course:
         self.name = name    # intilizes a course name
         self.assessments = []   # creates an empty list of assessments
 
-    """Changes the name of a course"""
     def update(self, name = None):
-
+        """Changes the name of a course"""
         if name is not None:
             self.name = name
 
-    """Creates and adds a new lab/test to an exisiting list of assessments"""
     def add_assessment(self, name: str, kind: str, due_date: date, weight: float):
+        """Creates and adds a new lab/test to 
+        an exisiting list of assessments"""
         new_assessment = Assessment(name, kind, due_date, weight)
         self.assessments.append(new_assessment)
 
-    """Searches and removes a lab/test from the course"""
     def remove_assessment(self, name: str) -> bool:
-
+        """Searches and removes a lab/test from the course"""
         found = False
 
         for assessment in self.assessments:
@@ -32,10 +31,9 @@ class Course:
                 break
         return found
     
-    """Calculates the grade earned for the course
-    Returns 0 if no assessments are completed"""
     def course_grade(self) -> float:
-
+        """Calculates the grade earned for the course
+        Returns 0 if no assessments are completed"""
         points_earned = 0
         weight_completed = 0
 
@@ -50,10 +48,9 @@ class Course:
         
         return points_earned / weight_completed
     
-    """Counts the amount of completed and uncompleted assessments
-    and returns the completion of the course as a %"""
     def completion(self) -> float:
-
+        """Counts the amount of completed and uncompleted assessments
+        and returns the completion of the course as a %"""
         numb_completed = 0
         numb_uncompleted = 0
         for assessment in self.assessments:
@@ -65,3 +62,12 @@ class Course:
         if numb_completed + numb_uncompleted == 0:
             return 0
         return  100 * numb_completed / (numb_completed + numb_uncompleted)
+    
+    def to_dict(self) -> dict:
+        """Converts a Course object to a dictionary 
+        an all of the corresponding assessments to dictionaries"""
+        assessment_lst = []
+        for assessment in self.assessments:
+            assessment_lst.append(assessment.to_dict())
+
+        return{"name" : self.name, "assessments" : assessment_lst}
