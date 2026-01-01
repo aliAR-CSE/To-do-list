@@ -25,4 +25,4 @@ class Assessment:
     def is_overdue(self):
         if self.is_completed is True:
             return False
-        return date.today() > self.due_date
+        return date.today() > self.due_date # compares today's date as YYYY-MM-DD to a set due date
