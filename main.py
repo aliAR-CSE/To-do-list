@@ -15,6 +15,8 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        """Sets up the lay out of the MainWindow by initilizing
+        a central widget were other widgets can be added """
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         self.center()
@@ -29,12 +31,16 @@ class MainWindow(QMainWindow):
         self.refresh_tree()
 
     def center(self):
+        """Automatically centers the MainWindow 
+        to the center of the screen"""
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
     
     def refresh_tree(self):
+        """Clears all object in the tree then fills the
+        tree based on the data loaded form the JSON file"""
         self.tree.clear()
         # set the courses in the tree
         for course in self.courses:
