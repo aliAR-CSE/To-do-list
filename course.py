@@ -31,7 +31,7 @@ class Course:
                 break
         return found
     
-    def course_grade(self) -> float:
+    def get_grade(self) -> float:
         """Calculates the grade earned for the course
         Returns 0 if no assessments are completed"""
         points_earned = 0
@@ -48,20 +48,20 @@ class Course:
         
         return points_earned / weight_completed
     
-    def completion(self) -> float:
+    def get_completion_rate(self) -> float:
         """Counts the amount of completed and uncompleted assessments
         and returns the completion of the course as a %"""
-        numb_completed = 0
-        numb_uncompleted = 0
+        completed_count = 0
+        uncompleted_count = 0
         for assessment in self.assessments:
 
             if assessment.is_completed:
-                numb_completed += 1
+                completed_count += 1
             else:
-                numb_uncompleted += 1
-        if numb_completed + numb_uncompleted == 0:
+                uncompleted_count += 1
+        if completed_count + uncompleted_count == 0:
             return 0
-        return  100 * numb_completed / (numb_completed + numb_uncompleted)
+        return  100 * completed_count / (completed_count + uncompleted_count)
     
     def to_dict(self) -> dict:
         """Converts a Course object to a dictionary 

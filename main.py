@@ -17,6 +17,8 @@ class MainWindow(QMainWindow):
     def initUI(self):
         """Sets up the lay out of the MainWindow by initilizing
         a central widget were other widgets can be added """
+
+        # Initilization of the central widget
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         self.center()
@@ -24,7 +26,8 @@ class MainWindow(QMainWindow):
 
         layout = QVBoxLayout()
         central_widget.setLayout(layout)
-        
+
+        # Label and initilization of the tree
         self.tree.setColumnCount(5)
         layout.addWidget(self.tree)
         self.tree.setHeaderLabels(['Name', 'Type', 'Weight', 'Grade', 'Completion'])
