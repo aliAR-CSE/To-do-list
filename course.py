@@ -9,7 +9,7 @@ class Course:
         self.name = name    # intilizes a course name
         self.assessments = []   # creates an empty list of assessments
 
-    def update(self, name = None):
+    def update_name(self, name = None):
         """Changes the name of a course"""
         if name is not None:
             self.name = name

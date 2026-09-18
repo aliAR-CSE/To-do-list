@@ -1,15 +1,15 @@
 from datetime import date
 
 class Assessment:
-    def __init__(self, name: str, kind: str, due_date: date, weight: float):
+    def __init__(self, name: str, assessment_type: str, due_date: date, weight: float):
         self.name = name
-        self.kind = kind
+        self.kind = assessment_type
         self.due_date = due_date
         self.weight = weight
         self.grade_earned = None
         self.is_completed = False
 
-    def update(self, name = None, due_date = None, weight = None, grade = None):
+    def update(self, name = None, due_date = None, weight = None, grade_earned = None):
         """Updates the Assessment based on params"""
         if name is not None:
             self.name = name
@@ -17,8 +17,8 @@ class Assessment:
             self.due_date = due_date
         if weight is not None:
             self.weight = weight
-        if grade is not None:
-            self.grade_earned = grade
+        if grade_earned is not None:
+            self.grade_earned = grade_earned
 
     def complete(self):
         """Marks the Assigment as completed"""

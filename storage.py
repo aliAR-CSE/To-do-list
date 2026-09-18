@@ -3,7 +3,7 @@ from course import Course
 from assessment import Assessment
 from datetime import date
 import os
-FILE_NAME = "data.JSON"
+DEFAULT_FILE_PATH = "data.JSON"
 
 
 def save_courses(file_path: str, courses: list[Course]):
