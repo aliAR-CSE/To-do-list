@@ -1,13 +1,34 @@
 from datetime import date
 
 class Assessment:
+
     def __init__(self, name: str, assessment_type: str, due_date: date, weight: float):
         self.name = name
-        self.kind = assessment_type
+        self.assessment_type = assessment_type
         self.due_date = due_date
         self.weight = weight
         self.grade_earned = None
         self.is_completed = False
+        
+    @property
+    def weight(self):
+        return self._weight
+    
+    @weight.setter
+    def weight(self, value):
+        if not (0 <= value <= 100):
+            raise ValueError("weight must be between 0 and 100")
+        self._weight = value
+        
+    @property
+    def grade_earned(self):
+        return self._grade_earned
+    
+    @grade_earned.setter
+    def grade_earned(self, value):
+        if value is not None and value < 0:
+            raise ValueError("grade_earned cannot be negative")
+        self._grade_earned = value
 
     def update(self, name = None, due_date = None, weight = None, grade_earned = None):
         """Updates the Assessment based on params"""
@@ -34,10 +55,27 @@ class Assessment:
     def to_dict(self) -> dict:
         """Converts Assessment object to a dictionary 
         and changes the due_date to a string"""
-        new_dict = {"name" : self.name, 
-                    "kind" : self.kind, 
+        return {"name" : self.name, 
+                    "assessment_type" : self.assessment_type, 
                     "due_date" : str(self.due_date), 
-                    "weight" : self.weight, 
-                    "grade_earned" : self.grade_earned, 
+                    "weight" : self._weight, 
+                    "grade_earned" : self._grade_earned, 
                     "is_completed" : self.is_completed}
-        return new_dict
+        
+    @classmethod
+    def from_dict(cls, data: dict) -> "Assessment":
+        """Builds an Assessment object from a dictionary
+        (the inverse of to_dict)"""
+        assessment = cls(
+            data["name"],
+            data["assessment_type"],
+            date.fromisoformat(data["due_date"]),
+            data["weight"],)
+        assessment.grade_earned = data["grade_earned"]
+        assessment.is_completed = data["is_completed"]
+        return assessment
+    
+    def __repr__(self):
+        return (f"Assessment(name={self.name!r}, assessment_type={self.assessment_type!r}, "
+                f"weight={self._weight}, grade_earned={self._grade_earned}, "
+                f"is_completed={self.is_completed})")
